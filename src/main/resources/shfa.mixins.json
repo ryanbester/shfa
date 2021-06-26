@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.ryanbester.shfa.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "shfa.refmap.json",
+  "mixins": [
+    "MixinFourWayBlock",
+    "MixinChainBlock"
+  ],
+  "minVersion": "0.8"
+}
