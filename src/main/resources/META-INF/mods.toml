@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[35,)"
+loaderVersion="[38,)"
 license="All rights reserved"
 
 [[mods]]
 modId="shfa"
-version="1.0.0"
+version="1.0.1"
 displayName="SHFA"
 displayURL="https://www.ryanbester.com"
 authors="Ryan Bester"

@@ -7,7 +7,7 @@ public class KeyInputHandler {
 
     @SubscribeEvent
     public void onKeyInput(KeyInputEvent event) {
-        if (SHFA.toggleKey.isPressed()) {
+        if (SHFA.toggleKey.isDown()) {
             SHFA.toggled = !SHFA.toggled;
         }
     }
