@@ -1,11 +1,3 @@
-# eclipse
-bin
-*.launch
-.settings
-.metadata
-.classpath
-.project
-
 # idea
 out
 *.ipr
@@ -21,9 +13,3 @@ build
 eclipse
 run
 logs
-
-# Files from Forge MDK
-changelog.txt
-CREDITS.txt
-LICENSE.txt
-README.txt

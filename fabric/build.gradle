@@ -1,0 +1,54 @@
+plugins {
+    id 'fabric-loom' version "${fabric_loom_version}"
+}
+
+archivesBaseName = "${mod_name}-${mod_version}+${minecraft_version}-fabric"
+version = "${mod_version}"
+group = "${group}"
+
+loom {
+    mixin.defaultRefmapName = "${mod_id}.refmap.json"
+
+    runs {
+        client {
+            runDir = 'run'
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+    }
+
+    implementation(project(":common") ){
+        transitive false
+    }
+
+    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
+
+    sourceSets.main.java.srcDirs += (project(':common').sourceSets.main.java.srcDirs)
+    sourceSets.main.resources.srcDirs += (project(':common').sourceSets.main.resources.srcDirs)
+}
+
+processResources {
+    filesMatching("fabric.mod.json") {
+        expand "version": "${mod_version}",
+                "mod_id": "${mod_id}",
+                "mod_name": "${mod_name}",
+                "mod_author": "${mod_author}",
+                "mod_description": "${mod_description}",
+                "mod_homepage": "${mod_homepage}",
+                "mod_sources": "${mod_sources}",
+                "mod_issues": "${mod_issues}"
+    }
+}
+
+java {
+    withSourcesJar()
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
