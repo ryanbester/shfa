@@ -23,6 +23,6 @@ side="CLIENT"
 [[dependencies.${mod_id}]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.18,)"
+versionRange="[1.19,)"
 ordering="NONE"
 side="CLIENT"
