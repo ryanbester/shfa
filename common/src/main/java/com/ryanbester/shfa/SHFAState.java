@@ -1,6 +1,6 @@
 package com.ryanbester.shfa;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.LinkedHashSet;
@@ -21,7 +21,7 @@ public class SHFAState {
     public static boolean showHitbox(BlockState state) {
         if (!enabled) return false;
 
-        if (enabledBlocks.contains(Registry.BLOCK.getKey(state.getBlock()).toString())) {
+        if (enabledBlocks.contains(BuiltInRegistries.BLOCK.getKey(state.getBlock()).toString())) {
             return true;
         }
 

@@ -3,7 +3,9 @@ package com.ryanbester.shfa;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.PlainTextButton;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.multiplayer.JoinMultiplayerScreen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
@@ -38,16 +40,15 @@ public class ConfigScreen extends Screen {
         this.blocksList.setValue(String.join(",", SHFAState.enabledBlocks));
         this.addRenderableWidget(this.blocksList);
 
-        this.addRenderableWidget(new Button(this.width / 2 - (BUTTON_WIDTH + 5), this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, CommonComponents.GUI_BACK, (button) -> {
-            this.onClose();
-        }));
+        this.addRenderableWidget(Button.builder(CommonComponents.GUI_BACK, (button) -> this.onClose())
+                .bounds(this.width / 2 - (BUTTON_WIDTH + 5), this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT).build());
 
-        this.addRenderableWidget(new Button(this.width / 2 + 5, this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT, CommonComponents.GUI_DONE, (button) -> {
+        this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> {
             SHFAState.enabledBlocks.clear();
             SHFAState.enabledBlocks.addAll(Arrays.stream(this.blocksList.getValue().split(",")).toList());
             saveCallback.run();
             this.onClose();
-        }));
+        }).bounds(this.width / 2 + 5, this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT).build());
     }
 
     @Override
