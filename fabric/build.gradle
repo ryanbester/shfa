@@ -16,6 +16,10 @@ loom {
     }
 }
 
+repositories {
+    maven { url = "https://maven.terraformersmc.com" }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
     mappings loom.layered() {
@@ -30,6 +34,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
+
+    modImplementation "com.terraformersmc:modmenu:4.1.2"
 
     sourceSets.main.java.srcDirs += (project(':common').sourceSets.main.java.srcDirs)
     sourceSets.main.resources.srcDirs += (project(':common').sourceSets.main.resources.srcDirs)

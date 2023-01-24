@@ -17,6 +17,9 @@
   "entrypoints": {
     "client": [
       "com.ryanbester.shfa.fabric.SHFA"
+    ],
+    "modmenu": [
+      "com.ryanbester.shfa.fabric.ModMenuApiImpl"
     ]
   },
   "mixins": [

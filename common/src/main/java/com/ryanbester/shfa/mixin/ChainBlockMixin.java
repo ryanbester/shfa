@@ -18,7 +18,7 @@ public class ChainBlockMixin {
     @Inject(at = @At("HEAD"), method = "getShape(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/phys/shapes/CollisionContext;)Lnet/minecraft/world/phys/shapes/VoxelShape;", cancellable = true)
     private void getShape(BlockState state, BlockGetter reader, BlockPos pos,
                           CollisionContext context, CallbackInfoReturnable<VoxelShape> cir) {
-        if (SHFAState.enabled) {
+        if (SHFAState.showHitbox(state)) {
             cir.setReturnValue(Shapes.block());
         }
     }

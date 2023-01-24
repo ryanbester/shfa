@@ -24,5 +24,7 @@ public class SHFA implements ClientModInitializer {
                 SHFAState.toggleSHFA();
             }
         });
+
+        Config.load();
     }
 }

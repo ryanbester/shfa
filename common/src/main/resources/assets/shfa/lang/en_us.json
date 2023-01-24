@@ -1,4 +1,7 @@
 {
   "shfa.toggle_shfa": "Toggle SHFA",
-  "shfa.shfa_category": "SHFA"
+  "shfa.shfa_category": "SHFA",
+  "shfa.shfa_config": "SHFA Config",
+  "shfa.enabled_blocks": "Enabled Blocks",
+  "shfa.enabled_blocks_description": "List of blocks or tags that should be modified by SHFA. Note that even if a block is in this list, it may not necessarily be supported by SHFA."
 }
