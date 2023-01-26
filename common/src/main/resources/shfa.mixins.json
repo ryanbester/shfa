@@ -3,10 +3,13 @@
   "minVersion": "0.8",
   "package": "com.ryanbester.shfa.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
   "client": [
     "ChainBlockMixin",
-    "CrossCollisionBlockMixin"
+    "CrossCollisionBlockMixin",
+    "TorchBlockMixin",
+    "RodBlockMixin",
+    "CarpetBlockMixin",
+    "LanternBlockMixin",
   ],
   "server": [],
   "injectors": {

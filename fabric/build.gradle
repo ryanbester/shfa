@@ -35,7 +35,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
 
-    modImplementation "com.terraformersmc:modmenu:4.1.2"
+    modImplementation "com.terraformersmc:modmenu:5.0.2"
 
     sourceSets.main.java.srcDirs += (project(':common').sourceSets.main.java.srcDirs)
     sourceSets.main.resources.srcDirs += (project(':common').sourceSets.main.resources.srcDirs)

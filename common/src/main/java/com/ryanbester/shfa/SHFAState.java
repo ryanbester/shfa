@@ -12,7 +12,7 @@ public class SHFAState {
 
     public static LinkedHashSet<String> enabledBlocks = new LinkedHashSet<>();
 
-    public static LinkedHashSet<String> enabledBlocksDefault = new LinkedHashSet<>(List.of("#minecraft:fences", "#shfa:glass_panes", "minecraft:chain", "minecraft:iron_bars"));
+    public static LinkedHashSet<String> enabledBlocksDefault = new LinkedHashSet<>(List.of("#minecraft:fences", "#minecraft:wool_carpets", "#shfa:glass_panes", "#shfa:torches", "minecraft:chain", "minecraft:iron_bars", "minecraft:end_rod", "minecraft:lantern", "minecraft:soul_lantern"));
 
     public static void toggleSHFA() {
         enabled = !enabled;
