@@ -13,9 +13,23 @@ task forgeClient(type: GradleBuild) {
     ]
 }
 
+task forgeServer(type: GradleBuild) {
+    group = 'shfa'
+    tasks = [
+            ':forge:runServer'
+    ]
+}
+
 task fabricClient(type: GradleBuild) {
     group = 'shfa'
     tasks = [
             ':fabric:runClient'
+    ]
+}
+
+task fabricServer(type: GradleBuild) {
+    group = 'shfa'
+    tasks = [
+            ':fabric:runServer'
     ]
 }

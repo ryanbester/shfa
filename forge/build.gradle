@@ -58,6 +58,26 @@ minecraft {
             }
         }
 
+        server {
+            property 'mixin.env.disableRefMap', 'true'
+            workingDirectory project.file('runserver')
+            arg "--mixin=${mod_id}.mixins.json"
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', "${mod_id}"
+
+            mods {
+                shfa {
+                    source sourceSets.main
+                }
+            }
+        }
+
         gameTestServer {
             workingDirectory project.file('run')
 

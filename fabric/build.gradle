@@ -13,6 +13,9 @@ loom {
         client {
             runDir = 'run'
         }
+        server {
+            runDir = 'runserver'
+        }
     }
 }
 

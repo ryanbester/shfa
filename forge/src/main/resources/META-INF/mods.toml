@@ -18,11 +18,11 @@ modId="forge"
 mandatory=true
 versionRange="[40,)"
 ordering="NONE"
-side="CLIENT"
+side="BOTH"
 
 [[dependencies.${mod_id}]]
 modId="minecraft"
 mandatory=true
 versionRange="[1.19,)"
 ordering="NONE"
-side="CLIENT"
+side="BOTH"

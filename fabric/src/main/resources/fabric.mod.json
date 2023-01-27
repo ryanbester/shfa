@@ -13,7 +13,7 @@
     "sources": "${mod_sources}",
     "issues": "${mod_issues}"
   },
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "client": [
       "com.ryanbester.shfa.fabric.SHFA"
