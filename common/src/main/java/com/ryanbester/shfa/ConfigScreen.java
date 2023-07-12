@@ -8,11 +8,10 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 
-import java.util.Arrays;
-
 public class ConfigScreen extends Screen {
     private static final int TITLE_HEIGHT = 8;
-    private static final int TOP_MARGIN = 24;
+    private static final int TOP_MARGIN = 32;
+    private static final int ENABLED_BLOCKS_TOP_MARGIN = TOP_MARGIN + 40;
 
     private static final int BUTTON_WIDTH = 150;
     private static final int BUTTON_HEIGHT = 20;
@@ -20,7 +19,7 @@ public class ConfigScreen extends Screen {
 
     private final Runnable saveCallback;
 
-    private EditBox blocksList;
+    private BlockSelectionList selectedBlocksList;
 
     public ConfigScreen(Runnable saveCallback) {
         super(Component.translatable("shfa.shfa_config"));
@@ -33,17 +32,40 @@ public class ConfigScreen extends Screen {
 
     @Override
     protected void init() {
-        this.blocksList = new EditBox(this.font, this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 12, BUTTON_WIDTH * 2 + 10, BUTTON_HEIGHT, Component.translatable("shfa.enabled_blocks"));
-        this.blocksList.setMaxLength(Integer.MAX_VALUE);
-        this.blocksList.setValue(String.join(",", SHFAState.enabledBlocks));
-        this.addRenderableWidget(this.blocksList);
+        this.selectedBlocksList = new BlockSelectionList(this.minecraft, BUTTON_WIDTH, this.height, TOP_MARGIN + 40, this.height - DONE_BUTTON_TOP_OFFSET - 12);
+        this.selectedBlocksList.setLeftPos(this.width / 2 - (BUTTON_WIDTH + 5));
+
+        this.addWidget(this.selectedBlocksList);
+        for (String block : SHFAState.enabledBlocks) {
+            this.selectedBlocksList.children().add(new BlockSelectionList.BlockSelection(this.minecraft, this.selectedBlocksList, block));
+        }
+
+        EditBox addBox = new EditBox(this.font, this.width / 2 + 5, ENABLED_BLOCKS_TOP_MARGIN, BUTTON_WIDTH, BUTTON_HEIGHT, Component.translatable("shfa.config.add_block"));
+        addBox.setMaxLength(Integer.MAX_VALUE);
+        this.addRenderableWidget(addBox);
+
+        this.addRenderableWidget(Button.builder(Component.translatable("shfa.config.add"), (button) -> {
+            if (addBox.getValue().length() < 1) {
+                return;
+            }
+
+            this.selectedBlocksList.children().add(new BlockSelectionList.BlockSelection(this.minecraft, this.selectedBlocksList, addBox.getValue()));
+        }).bounds(this.width / 2 + 5, ENABLED_BLOCKS_TOP_MARGIN + BUTTON_HEIGHT + 5, BUTTON_WIDTH, BUTTON_HEIGHT).build());
+
+        this.addRenderableWidget(Button.builder(Component.translatable("shfa.config.remove"), (button) -> {
+            if (this.selectedBlocksList.getSelected() == null) {
+                return;
+            }
+
+            this.selectedBlocksList.children().remove(this.selectedBlocksList.getSelected());
+        }).bounds(this.width / 2 + 5, ENABLED_BLOCKS_TOP_MARGIN + 2 * (BUTTON_HEIGHT + 5), BUTTON_WIDTH, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_BACK, (button) -> this.onClose())
                 .bounds(this.width / 2 - (BUTTON_WIDTH + 5), this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT).build());
 
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, (button) -> {
             SHFAState.enabledBlocks.clear();
-            SHFAState.enabledBlocks.addAll(Arrays.stream(this.blocksList.getValue().split(",")).toList());
+            SHFAState.enabledBlocks.addAll(this.selectedBlocksList.children().stream().map(BlockSelectionList.BlockSelection::getName).toList());
             saveCallback.run();
             this.onClose();
         }).bounds(this.width / 2 + 5, this.height - DONE_BUTTON_TOP_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT).build());
@@ -51,11 +73,14 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(poseStack);
+        this.renderDirtBackground(0);
+
+        this.selectedBlocksList.render(poseStack, mouseX, mouseY, partialTick);
+
         drawCenteredString(poseStack, this.font, this.title, this.width / 2, TITLE_HEIGHT, 0xffffff);
         drawString(poseStack, this.font, Component.translatable("shfa.enabled_blocks"), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN, 0xffffff);
 
-        this.font.drawWordWrap(FormattedText.of(Component.translatable("shfa.enabled_blocks_description").getString()), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 40, BUTTON_WIDTH * 2 + 10, 0xffffff);
+        this.font.drawWordWrap(FormattedText.of(Component.translatable("shfa.enabled_blocks_description").getString()), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 12, BUTTON_WIDTH * 2 + 10, 0xffffff);
 
         super.render(poseStack, mouseX, mouseY, partialTick);
     }

@@ -3,5 +3,8 @@
   "shfa.shfa_category": "SHFA",
   "shfa.shfa_config": "SHFA Config",
   "shfa.enabled_blocks": "Enabled Blocks",
-  "shfa.enabled_blocks_description": "List of blocks or tags that should be modified by SHFA. Note that even if a block is in this list, it may not necessarily be supported by SHFA."
+  "shfa.enabled_blocks_description": "List of blocks or tags that should be modified by SHFA. Note that even if a block is in this list, it may not necessarily be supported by SHFA.",
+  "shfa.config.add_block": "Block to add",
+  "shfa.config.add": "Add",
+  "shfa.config.remove": "Remove"
 }

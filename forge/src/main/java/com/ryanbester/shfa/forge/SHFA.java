@@ -13,8 +13,6 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 
 @Mod("shfa")
 public class SHFA {
-    public static final KeyMapping toggleKey = new KeyMapping("shfa.toggle_shfa", KeyEvent.VK_H, "shfa.toggle_shfa");
-
     public SHFA() {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(SHFAClient.class);
