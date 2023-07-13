@@ -1,7 +1,7 @@
 package com.ryanbester.shfa;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ObjectSelectionList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -61,11 +61,11 @@ public class BlockSelectionList extends ObjectSelectionList<BlockSelectionList.B
         }
 
         @Override
-        public void render(@NotNull PoseStack poseStack, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean isMouseOver, float partialTick) {
+        public void render(GuiGraphics guiGraphics, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean bl, float partialTick) {
             if (is != null) {
-                this.minecraft.getItemRenderer().renderGuiItem(is, left + BlockSelectionList.PADDING_X, top);
+                guiGraphics.renderFakeItem(is, left + BlockSelectionList.PADDING_X, top);
             }
-            this.minecraft.font.drawShadow(poseStack, this.nameDisplayCache, (float) (left + BlockSelectionList.PADDING_X + 22), (float) (top + 5), 16777215);
+            guiGraphics.drawString(this.minecraft.font, this.nameDisplayCache, left + BlockSelectionList.PADDING_X + 22, top + 5, 16777215);
         }
 
         @Override

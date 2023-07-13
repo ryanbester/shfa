@@ -1,6 +1,6 @@
 package com.ryanbester.shfa;
 
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -72,16 +72,16 @@ public class ConfigScreen extends Screen {
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick) {
-        this.renderDirtBackground(0);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderDirtBackground(guiGraphics);
 
-        this.selectedBlocksList.render(poseStack, mouseX, mouseY, partialTick);
+        this.selectedBlocksList.render(guiGraphics, mouseX, mouseY, partialTick);
 
-        drawCenteredString(poseStack, this.font, this.title, this.width / 2, TITLE_HEIGHT, 0xffffff);
-        drawString(poseStack, this.font, Component.translatable("shfa.enabled_blocks"), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN, 0xffffff);
+        guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, TITLE_HEIGHT, 0xffffff);
+        guiGraphics.drawString(this.font, Component.translatable("shfa.enabled_blocks"), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN, 0xffffff);
 
-        this.font.drawWordWrap(FormattedText.of(Component.translatable("shfa.enabled_blocks_description").getString()), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 12, BUTTON_WIDTH * 2 + 10, 0xffffff);
+        guiGraphics.drawWordWrap(this.font, FormattedText.of(Component.translatable("shfa.enabled_blocks_description").getString()), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 12, BUTTON_WIDTH * 2 + 10, 0xffffff);
 
-        super.render(poseStack, mouseX, mouseY, partialTick);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 }

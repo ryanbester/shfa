@@ -23,10 +23,6 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
 }
 
-loom {
-    remapArchives = false
-}
-
 java {
     withSourcesJar()
     toolchain.languageVersion = JavaLanguageVersion.of(17)
