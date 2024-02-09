@@ -32,8 +32,9 @@ public class ConfigScreen extends Screen {
 
     @Override
     protected void init() {
-        this.selectedBlocksList = new BlockSelectionList(this.minecraft, BUTTON_WIDTH, this.height, TOP_MARGIN + 40, this.height - DONE_BUTTON_TOP_OFFSET - 12);
-        this.selectedBlocksList.setLeftPos(this.width / 2 - (BUTTON_WIDTH + 5));
+        this.selectedBlocksList = new BlockSelectionList(this.minecraft, BUTTON_WIDTH,this.height - DONE_BUTTON_TOP_OFFSET - ENABLED_BLOCKS_TOP_MARGIN - 12, ENABLED_BLOCKS_TOP_MARGIN, 20);
+        this.addRenderableWidget(this.selectedBlocksList);
+        this.selectedBlocksList.setX(this.width / 2 - (BUTTON_WIDTH + 5));
 
         this.addWidget(this.selectedBlocksList);
         for (String block : SHFAState.enabledBlocks) {
@@ -73,15 +74,16 @@ public class ConfigScreen extends Screen {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.renderDirtBackground(guiGraphics);
-
-        this.selectedBlocksList.render(guiGraphics, mouseX, mouseY, partialTick);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
 
         guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, TITLE_HEIGHT, 0xffffff);
         guiGraphics.drawString(this.font, Component.translatable("shfa.enabled_blocks"), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN, 0xffffff);
 
         guiGraphics.drawWordWrap(this.font, FormattedText.of(Component.translatable("shfa.enabled_blocks_description").getString()), this.width / 2 - (BUTTON_WIDTH + 5), TOP_MARGIN + 12, BUTTON_WIDTH * 2 + 10, 0xffffff);
+    }
 
-        super.render(guiGraphics, mouseX, mouseY, partialTick);
+    @Override
+    public void renderBackground(GuiGraphics guiGraphics, int i, int j, float f) {
+        this.renderDirtBackground(guiGraphics);
     }
 }

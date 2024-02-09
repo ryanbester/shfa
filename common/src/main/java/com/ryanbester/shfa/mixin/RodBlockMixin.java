@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 
 @Mixin(RodBlock.class)
-public class RodBlockMixin extends DirectionalBlock {
+public abstract class RodBlockMixin extends DirectionalBlock {
     @Shadow @Final protected static VoxelShape X_AXIS_AABB;
     @Shadow @Final protected static VoxelShape Z_AXIS_AABB;
     @Shadow @Final protected static VoxelShape Y_AXIS_AABB;

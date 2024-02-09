@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "mixin": [
+    "shfa.mixins.json"
+  ],
+  "quilt_loader": {
+    "group": "${group}",
+    "id": "${mod_id}",
+    "version": "${version}",
+    "metadata": {
+      "name": "${mod_name}",
+      "description": "${mod_description}",
+      "contributors": {
+        "${mod_author}": "Owner"
+      },
+      "contact": {
+        "homepage": "${mod_homepage}",
+        "sources": "${mod_sources}",
+        "issues": "${mod_issues}"
+      },
+      "intermediate_mappings": "net.fabricmc:intermediary",
+      "entrypoints": {
+        "init": [
+          "com.ryanbester.shfa.quilt.SHFA"
+        ],
+        "modmenu": [
+          "com.ryanbester.shfa.fabriclike.ModMenuApiImpl"
+        ]
+      }
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.20.4"
+      }
+    ]
+  },
+  "minecraft": {
+    "environment": "*"
+  }
+}

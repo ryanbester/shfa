@@ -1,6 +1,7 @@
 package com.ryanbester.shfa.fabric;
 
 import com.ryanbester.shfa.SHFAState;
+import com.ryanbester.shfa.fabriclike.Config;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;

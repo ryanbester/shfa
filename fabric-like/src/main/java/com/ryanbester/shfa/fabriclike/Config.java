@@ -1,4 +1,4 @@
-package com.ryanbester.shfa.fabric;
+package com.ryanbester.shfa.fabriclike;
 
 import com.google.gson.*;
 import com.ryanbester.shfa.SHFAState;

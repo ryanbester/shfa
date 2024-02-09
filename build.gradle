@@ -1,35 +1,47 @@
-task buildAll(type: GradleBuild) {
-    group = 'shfa'
-    tasks = [
-            'forge:build',
-            'fabric:build'
-    ]
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.5-SNAPSHOT" apply false
 }
 
-task forgeClient(type: GradleBuild) {
-    group = 'shfa'
-    tasks = [
-            ':forge:runClient'
-    ]
+architectury {
+    minecraft = rootProject.minecraft_version
 }
 
-task forgeServer(type: GradleBuild) {
-    group = 'shfa'
-    tasks = [
-            ':forge:runServer'
-    ]
+subprojects {
+    apply plugin: "dev.architectury.loom"
+
+    loom {
+        silentMojangMappingsLicense()
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings loom.officialMojangMappings()
+    }
 }
 
-task fabricClient(type: GradleBuild) {
-    group = 'shfa'
-    tasks = [
-            ':fabric:runClient'
-    ]
-}
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
 
-task fabricServer(type: GradleBuild) {
-    group = 'shfa'
-    tasks = [
-            ':fabric:runServer'
-    ]
+    base {
+        archivesName = rootProject.archives_base_name
+    }
+
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
+    }
 }

@@ -9,11 +9,10 @@
     "TorchBlockMixin",
     "RodBlockMixin",
     "CarpetBlockMixin",
-    "LanternBlockMixin",
+    "LanternBlockMixin"
   ],
   "server": [],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "shfa.refmap.json"
+  }
 }

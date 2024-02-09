@@ -14,13 +14,13 @@ import org.jetbrains.annotations.NotNull;
 public class BlockSelectionList extends ObjectSelectionList<BlockSelectionList.BlockSelection> {
     public static int PADDING_X = 4;
 
-    public BlockSelectionList(Minecraft minecraft, int width, int height, int top, int bottom) {
-        super(minecraft, width, height, top, bottom, 20);
+    public BlockSelectionList(Minecraft minecraft, int width, int height, int top, int itemHeight) {
+        super(minecraft, width, height, top, itemHeight);
     }
 
     @Override
     protected int getScrollbarPosition() {
-        return this.x1 - 6;
+        return this.getRight() - 6;
     }
 
     @Override
